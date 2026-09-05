@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # 1. The Database
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  # 2. The Backend API
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - MONGO_URI=mongodb://mongodb:27017/kanban
+      - JWT_SECRET=461c90489494ea77506c3fd07f1280d8dafe808d0fbf6a2164a59cacd6da8949
+    depends_on:
+      - mongodb
+
+  # 3. The Next.js Frontend
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:5000/api
+    depends_on:
+      - backend
+
+volumes:
+  mongo-data:

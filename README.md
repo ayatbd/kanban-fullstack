@@ -1,3 +1,4 @@
+Live Link: https://mini-kanban-zeta.vercel.app/
 # Mini Kanban Board — Full-Stack Challenge
 
 A functional Mini Kanban Board application where users can create boards, organize workflow columns, and manage tasks with drag-and-drop functionality. This project demonstrates full-stack proficiency, focusing on secure collaboration, data integrity during reordering, and a responsive UI.
